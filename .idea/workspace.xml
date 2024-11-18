@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec6beb1f-3520-4c71-9c46-4aa93bab70f6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/work/Catalina/localhost/api/org/apache/jsp/index_jsp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/work/Catalina/localhost/api/org/apache/jsp/index_jsp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/catalina.2024-11-18.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/catalina.2024-11-18.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +78,7 @@
     "Gradle.DatabaseTest.executor": "Run",
     "Gradle.apiGradle [jar].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "Smart Tomcat.Unnamed.executor": "Run",
     "Smart Tomcat.tomcat 9.executor": "Run",
     "git-widget-placeholder": "master",
@@ -155,7 +152,6 @@
         </TomcatInfo>
       </option>
       <option name="vmOptions" value="" />
-      <module name="apiGradle.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
