@@ -34,6 +34,7 @@ public class FruitDao {
                         }
                         fruits = new Fruit(id, name, price, sellersList);
                     }
+								 		else fruits = new Fruit(id, name, price);
                 }
                 else fruits = new Fruit(id, name, price);
             }
@@ -70,6 +71,7 @@ public class FruitDao {
                         }
                         fruits.add(new Fruit(i, name, price, sellersList));
                     }
+										else fruits.add(new Fruit(i, name, price));
                 }
                 else fruits.add(new Fruit(i, name, price));
             }

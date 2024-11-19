@@ -9,29 +9,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SellersDao {
-    public long save(Seller seller) {
-        String name = seller.getName();
-        String supplier = seller.getSupplier();
-        long id = 0;
-        Connection connect = DatabaseConnector.connector();
-        try (PreparedStatement addSeller = connect.prepareStatement("INSERT INTO sellers(name, supplier) VALUES(?,?)")) {
-            addSeller.setString(1, name);
-            addSeller.setString(2, supplier);
-            addSeller.executeUpdate();
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try(PreparedStatement readSellers = connect.prepareStatement("SELECT id FROM sellers WHERE name=?")){
-            readSellers.setString(1, name);
-            ResultSet result = readSellers.executeQuery();
-            if(result.next())
-                id = result.getLong("id");
-            connect.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return id;
-    }
+	public long save(Seller seller) {
+		String name = seller.getName();
+		String supplier = seller.getSupplier();
+		long id = 0;
+		Connection connect = DatabaseConnector.connector();
+		try (PreparedStatement addSeller = connect.prepareStatement("INSERT INTO sellers(name, supplier) VALUES(?,?)")) {
+			addSeller.setString(1, name);
+			addSeller.setString(2, supplier);
+			addSeller.executeUpdate();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		try(PreparedStatement readSellers = connect.prepareStatement("SELECT id FROM sellers WHERE name=?")){
+			readSellers.setString(1, name);
+			ResultSet result = readSellers.executeQuery();
+			if(result.next())
+				id = result.getLong("id");
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		try(PreparedStatement updateSuppliers = connect.prepareStatement("UPDATE suppliers SET sellers=array_append(sellers,?) WHERE name=?")){
+			updateSuppliers.setString(1, name);
+			updateSuppliers.setString(2, supplier);
+			updateSuppliers.executeUpdate();
+			connect.close();
+		} catch (SQLException e) {
+						throw new RuntimeException(e);
+		}
+		return id;
+	}
 
     public Seller find(long id) {
         Seller sellers = new Seller();
@@ -71,6 +78,12 @@ public class SellersDao {
                         else
                             sellers = new Seller(name, id, fruitList);
                     }
+										else {
+										 if (supplier != null && !supplier.isEmpty())
+											sellers = new Seller(id, name, new Supplier(id_supplier, supplier));
+										 else
+											sellers = new Seller(name, id);
+										}
                 }
                 else {
                     if (supplier != null && !supplier.isEmpty())
@@ -123,6 +136,11 @@ public class SellersDao {
                             sellers.add(new Seller(i, name, new Supplier(id_supplier, supplier), fruitList));
                         else sellers.add(new Seller(name, i, fruitList));
                     }
+										else{
+										 	if(supplier!=null && !supplier.isEmpty())
+											 sellers.add(new Seller(i, name, new Supplier(id_supplier, supplier)));
+											else sellers.add(new Seller(name, i));
+										}
                 }
                 else{
                     if(supplier!=null && !supplier.isEmpty())
@@ -206,7 +224,7 @@ public class SellersDao {
             readSellers.setString(1, name);
             readSellers.setString(2, supplier);
             ResultSet rs = readSellers.executeQuery();
-            if(rs.next());
+            if(rs.next())
                 id=rs.getLong("id");
         }catch (SQLException e) {
             throw new RuntimeException(e);

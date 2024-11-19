@@ -127,6 +127,7 @@ public class SuppliersDao {
                         }
                         suppliers = new Supplier(id, name, sellersList);
                     }
+										else suppliers=new Supplier(id, name);
                 }
                 else suppliers = new Supplier(id, name);
             }
@@ -162,6 +163,7 @@ public class SuppliersDao {
                         }
                         suppliers.add(new Supplier(i, name, sellersList));
                     }
+										else suppliers.add(new Supplier(i, name));
                 }
                 else suppliers.add(new Supplier(i, name));
             }
